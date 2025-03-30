@@ -76,13 +76,3 @@ The AI-powered resume screener automates resume screening by extracting key info
 ### **AI Flowchart**
 📌 _(To be added)_
 
-graph LR
-  HR(Job Description) -->|Uploads| Backend
-  Applicant(Resume) -->|Uploads| Backend
-  Backend -->|Processes Data| AI_Engine
-  AI_Engine -->|Extracts Data| Database
-  AI_Engine -->|Ranks Resumes| Ranking_System
-  Ranking_System -->|Sends Top 5| AI_API
-  AI_API -->|Reranks| Ranking_System
-  Ranking_System -->|Stores Results| Database
-  HR -->|Views Ranked Applicants| Frontend
