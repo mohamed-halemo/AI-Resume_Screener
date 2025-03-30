@@ -45,7 +45,7 @@ The AI-powered resume screener automates resume screening by extracting key info
 | `matched_resumes` | AI-ranked results           |
 | `ai_feedback`     | AI-generated resume feedback |
 
-# Relationship Types
+### Relationship Types
 
 | Entity 1          | Entity 2          | Relationship Type  |
 |-------------------|-------------------|--------------------|
