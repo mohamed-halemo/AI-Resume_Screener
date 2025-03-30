@@ -42,7 +42,7 @@ The AI-powered resume screener automates resume screening by extracting key info
 | `users`           | Stores HR & Applicants info  |
 | `job_descriptions` | Stores job postings         |
 | `resumes`          | Extracted resume data       |
-| `matched_resumes` | AI-ranked results           |
+| `Resume_job_links` | AI-ranked results           |
 | `ai_feedback`     | AI-generated resume feedback |
 
 ### Relationship Types
@@ -53,8 +53,8 @@ The AI-powered resume screener automates resume screening by extracting key info
 | Users             | Resumes           | One-to-Many        |
 | Resumes           | Job Descriptions  | Many-to-Many       |
 | Resumes           | AI Feedback       | One-to-One        |
-| Resumes           | Matched Resumes   | Many-to-Many       |
-| Job Descriptions  | Matched Resumes   | Many-to-Many       |
+| Resumes           | Resumes_job_links  | Many-to-Many       |
+| Job Descriptions  | Resumes_job_links  | Many-to-Many       |
 
 ### **ER Diagram**
 
