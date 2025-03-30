@@ -41,12 +41,24 @@ The AI-powered resume screener automates resume screening by extracting key info
 |--------------------|-----------------------------|
 | `users`           | Stores HR & Applicants info  |
 | `job_descriptions` | Stores job postings         |
-| `resumes`         | Extracted resume data       |
+| `resumes`          | Extracted resume data       |
 | `matched_resumes` | AI-ranked results           |
 | `ai_feedback`     | AI-generated resume feedback |
 
+# Relationship Types
+
+| Entity 1          | Entity 2          | Relationship Type  |
+|-------------------|-------------------|--------------------|
+| Users             | Job Descriptions  | One-to-Many        |
+| Users             | Resumes           | One-to-Many        |
+| Resumes           | Job Descriptions  | Many-to-Many       |
+| Resumes           | AI Feedback       | One-to-One        |
+| Resumes           | Matched Resumes   | Many-to-Many       |
+| Job Descriptions  | Matched Resumes   | Many-to-Many       |
+
 ### **ER Diagram**
 📌 _(To be added)_
+![Alt text](ERD "ERD")
 
 ## API Endpoints
 
