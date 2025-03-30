@@ -57,8 +57,8 @@ The AI-powered resume screener automates resume screening by extracting key info
 | Job Descriptions  | Matched Resumes   | Many-to-Many       |
 
 ### **ER Diagram**
-📌 _(To be added)_
-![Alt text](ERD "ERD")
+
+![Alt text](ERD.png "ERD")
 
 ## API Endpoints
 
