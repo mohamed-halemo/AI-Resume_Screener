@@ -76,13 +76,3 @@ The AI-powered resume screener automates resume screening by extracting key info
 ### **AI Flowchart**
 📌 _(To be added)_
 
-## Project Management Tool used
-
-###  Trello Board 
-
-
-## Next Steps
-- [ ] **Generate missing diagrams** (ERD, UML, AI Flowchart, System Architecture)
-- [ ] **Setup CI/CD pipeline**
-- [ ] **Start Developing Front-End Pages**
-- [ ] **Develop API endpoints & test with Postman**
