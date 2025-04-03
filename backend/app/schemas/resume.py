@@ -9,7 +9,6 @@ class ResumeBase(BaseModel):
     skills: Optional[str] = None
     experience: Optional[str] = None
     education: Optional[str] = None
-    location: Optional[str] = None
     certifications: Optional[str] = None
     projects: Optional[str] = None
     languages: Optional[str] = None

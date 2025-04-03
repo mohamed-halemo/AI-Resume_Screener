@@ -7,10 +7,12 @@ from typing import Literal
 class UserBase(BaseModel):
     name: str
     email: EmailStr
+    password: str
     role: Literal["Admin", "Candidate", "HR"]
 
 class UserCreate(UserBase):
-    pass
+    id: UUID
+
 
 class UserUpdate(UserBase):
     pass

@@ -1,12 +1,15 @@
  
 from fastapi import FastAPI
-from app.api import auth, jobs, resumes, ranking, feedback, rerank
+from models import job_description
+from api.v1.endpoints import  job_description,user
 
 app = FastAPI(title="AI-Powered Resume Screener", version="1.0")
 
 # # Include API routes
 # app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-# app.include_router(jobs.router, prefix="/jobs", tags=["Job Descriptions"])
+app.include_router(job_description.router)
+app.include_router(user.router)
+
 # app.include_router(resumes.router, prefix="/resumes", tags=["Resumes"])
 # app.include_router(ranking.router, prefix="/ranking", tags=["Resume Ranking"])
 # app.include_router(feedback.router, prefix="/feedback", tags=["AI Feedback"])
