@@ -19,6 +19,7 @@ class User(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True) 
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
+    password = Column(String, unique=False, nullable=False)
     role = Column(String, nullable=False,default=CANDIDATE)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
 
