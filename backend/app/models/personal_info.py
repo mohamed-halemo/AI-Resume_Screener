@@ -4,10 +4,12 @@ from backend.app.core.database import Base
 from sqlalchemy.sql import func
 import uuid
 
+
+
 class PersonalInfo(Base):
     __tablename__ = "personal_info"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)  # UUID primary key
-    resume_id = Column(UUID(as_uuid=True), ForeignKey("resumes.id"), nullable=False)  # Foreign key to Resume
+    resume_id = Column(UUID(as_uuid=True), ForeignKey("resumes.id", ondelete='CASCADE'), nullable=False)  # Foreign key to Resume
     name = Column(Text, nullable=False)  # Personal info fields
     email = Column(Text, nullable=True)
     phone = Column(Text, nullable=True)

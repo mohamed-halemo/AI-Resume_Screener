@@ -4,6 +4,8 @@ from sqlalchemy.orm import relationship
 from backend.app.core.database import Base
 from sqlalchemy.sql import func
 import uuid
+from backend.app.models.resume import Resume
+
 
 
 class ResumeJobLink(Base):

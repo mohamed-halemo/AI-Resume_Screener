@@ -17,6 +17,12 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base Class for Models
 Base = declarative_base()
+# from models.resume import Resume
+# from models.user import User
+# from models.job_description import JobDescription
+# from models.resume_job_link import ResumeJobLink
+# from models.ai_feedback import AIFeedback
+# from models.personal_info import PersonalInfo
 
 # Dependency to get DB session
 def get_db():
