@@ -1,8 +1,8 @@
 """Initial migration
 
-Revision ID: f9d9e442e26a
+Revision ID: d5d9224640b9
 Revises: 
-Create Date: 2025-04-03 05:09:31.424131
+Create Date: 2025-04-03 16:03:35.372646
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'f9d9e442e26a'
+revision: str = 'd5d9224640b9'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -72,7 +72,7 @@ def upgrade() -> None:
     sa.Column('resume_id', sa.UUID(), nullable=False),
     sa.Column('feedback_text', sa.Text(), nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), server_default=sa.text('now()'), nullable=True),
-    sa.ForeignKeyConstraint(['resume_id'], ['resumes.id'], ),
+    sa.ForeignKeyConstraint(['resume_id'], ['resumes.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_ai_feedback_id'), 'ai_feedback', ['id'], unique=False)
@@ -86,7 +86,7 @@ def upgrade() -> None:
     sa.Column('linkedin', sa.Text(), nullable=True),
     sa.Column('github', sa.Text(), nullable=True),
     sa.Column('website', sa.Text(), nullable=True),
-    sa.ForeignKeyConstraint(['resume_id'], ['resumes.id'], ),
+    sa.ForeignKeyConstraint(['resume_id'], ['resumes.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_personal_info_id'), 'personal_info', ['id'], unique=False)

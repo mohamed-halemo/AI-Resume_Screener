@@ -5,6 +5,7 @@ from sqlalchemy import pool
 import os
 from sqlalchemy.engine.url import URL
 
+
 from alembic import context
 from backend.app.core.database import Base
 from backend.app.models.user import User
@@ -14,6 +15,8 @@ from backend.app.models.job_description import JobDescription
 from backend.app.models.resume_job_link import ResumeJobLink
 from backend.app.models.ai_feedback import AIFeedback
 from sqlalchemy import engine_from_config, pool
+
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

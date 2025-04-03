@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 from backend.app.core.database import Base
 from sqlalchemy.sql import func
 import uuid
+from backend.app.models.personal_info import PersonalInfo
+from backend.app.models.ai_feedback import AIFeedback
 
 class Resume(Base):
     __tablename__ = "resumes"
@@ -25,12 +27,12 @@ class Resume(Base):
     
     # AI feedback & parsing info
     parsed_text = Column(Text, nullable=True)
-    ai_feedback = relationship("AIFeedback", back_populates="resume", uselist=False)
+    ai_feedback = relationship("AIFeedback", back_populates="resume", uselist=False,passive_deletes=True)
 
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
 
-    user = relationship("User", back_populates="resumes")
+    user = relationship("User", back_populates="resume")
     resume_job_links = relationship("ResumeJobLink", back_populates="resume")
     
     # One-to-One relationship to PersonalInfo
-    personal_info = relationship("PersonalInfo", back_populates="resume", uselist=False)  # One-to-One
+    personal_info = relationship("PersonalInfo", back_populates="resume", uselist=False,passive_deletes=True)  # One-to-One

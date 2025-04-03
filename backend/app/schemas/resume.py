@@ -32,9 +32,9 @@ class ResumeResponse(ResumeBase):
     personal_info: Optional[PersonalInfoResponse] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
-from schemas.ai_feedback import AIFeedbackResponse
-from schemas.personal_info import PersonalInfoResponse
+from backend.app.schemas.ai_feedback import AIFeedbackResponse
+from backend.app.schemas.personal_info import PersonalInfoResponse
 ResumeResponse.model_rebuild()

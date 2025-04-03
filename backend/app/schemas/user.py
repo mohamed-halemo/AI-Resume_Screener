@@ -11,7 +11,8 @@ class UserBase(BaseModel):
     role: Literal["Admin", "Candidate", "HR"]
 
 class UserCreate(UserBase):
-    id: UUID
+    id: UUID=None
+  
 
 
 class UserUpdate(UserBase):
@@ -21,5 +22,8 @@ class UserResponse(UserBase):
     id: UUID
     created_at: datetime
 
+
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+    

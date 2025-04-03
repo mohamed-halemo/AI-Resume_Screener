@@ -22,4 +22,4 @@ class PersonalInfoResponse(PersonalInfoBase):
     resume_id: UUID
 
     class Config:
-        orm_mode = True
+        from_attributes = True

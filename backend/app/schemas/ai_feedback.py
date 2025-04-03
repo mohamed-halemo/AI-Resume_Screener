@@ -18,8 +18,8 @@ class AIFeedbackResponse(AIFeedbackBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-from schemas.resume import ResumeResponse
+from backend.app.schemas.resume import ResumeResponse
 AIFeedbackResponse.model_rebuild()
 

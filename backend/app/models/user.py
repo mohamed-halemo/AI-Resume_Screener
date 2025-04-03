@@ -2,9 +2,11 @@
 
 from sqlalchemy import Column, UUID, String,TIMESTAMP
 from sqlalchemy.orm import relationship
-from app.core.database import Base
+from backend.app.core.database import Base
 from sqlalchemy.sql import func
 import uuid
+from backend.app.models.job_description import JobDescription
+
 
 class User(Base):
     __tablename__ = "users"
@@ -23,6 +25,6 @@ class User(Base):
     role = Column(String, nullable=False,default=CANDIDATE)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
 
-    job_descriptions = relationship("JobDescription", back_populates="user", cascade="all, delete-orphan")
+    job_descriptions = relationship("JobDescription", back_populates="user", cascade="all,delete")
     resume = relationship("Resume", back_populates="user", uselist=False)  # One-to-One relationship
 

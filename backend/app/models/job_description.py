@@ -4,6 +4,8 @@ from backend.app.core.database import Base
 from sqlalchemy.sql import func
 import uuid
 
+from backend.app.models.resume_job_link import ResumeJobLink
+
 class JobDescription(Base):
     __tablename__ = "job_descriptions"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True) 
