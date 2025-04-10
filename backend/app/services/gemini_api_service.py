@@ -212,7 +212,6 @@ class ResumeRanker:
         return reranked_resumes
 
 # Example usage
-api_key = "AIzaSyAvX1jKQOx-e2XTrb13cDYeCS_sucEGKUA"
 job_description = {
     "title": "Data Scientist",
     "description": "We are looking for a data scientist with expertise in Python, machine learning, and data visualization.",
