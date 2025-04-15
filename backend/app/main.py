@@ -1,7 +1,6 @@
  
 from fastapi import FastAPI
-from models import job_description
-from api.v1.endpoints import  job_description,user
+from backend.app.api.v1.endpoints import  job_description,user
 
 app = FastAPI(title="AI-Powered Resume Screener", version="1.0")
 
