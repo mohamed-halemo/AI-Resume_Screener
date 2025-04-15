@@ -2,7 +2,7 @@
 from pydantic import BaseModel, EmailStr
 from uuid import UUID
 from datetime import datetime
-from typing import Literal
+from typing import Literal,Optional
 
 class UserBase(BaseModel):
     name: str
@@ -11,7 +11,7 @@ class UserBase(BaseModel):
     role: Literal["Admin", "applicant", "HR"]
 
 class UserCreate(UserBase):
-    id: UUID=None
+    id: Optional[UUID]=None
   
 
 

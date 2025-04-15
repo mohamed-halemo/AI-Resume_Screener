@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 export default function Register() {
   const router = useRouter()
 
-  // searchParams allows us to access query string params like ?role=hr
+  // searchParams allows us to access query string params like ?role=HR
   const searchParams = useSearchParams()
 
   // Form state variables
@@ -17,10 +17,10 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
 
-  // On component mount, get the 'role' from the URL (e.g., ?role=hr)
+  // On component mount, get the 'role' from the URL (e.g., ?role=HR)
   useEffect(() => {
     const selectedRole = searchParams.get('role') // searchParams.get() fetches the value of a query param
-    if (selectedRole === 'hr' || selectedRole === 'applicant') {
+    if (selectedRole === 'HR' || selectedRole === 'applicant') {
       setRole(selectedRole)
     }
   }, [searchParams])
@@ -43,13 +43,13 @@ export default function Register() {
         name,
         email,
         password,
-        role, // 'hr' or 'applicant'
+        role, // 'HR' or 'applicant'
       }),
     })
 
     if (res.ok) {
       // Redirect based on role
-      router.push(role === 'hr' ? '/upload-job-description' : '/upload-resume')
+      router.push(role === 'HR' ? '/upload-job-description' : '/upload-resume')
     } else {
       const data = await res.json()
       setError(data.detail || 'Registration failed')
@@ -60,7 +60,7 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">
-          Register as {role === 'hr' ? 'HR' : 'Applicant'}
+          Register as {role === 'HR' ? 'HR' : 'Applicant'}
         </h2>
 
         <form onSubmit={handleRegister} className="space-y-4">

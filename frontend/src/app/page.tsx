@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function Home() {
   const router = useRouter()
-  const [role, setRole] = useState<'hr' | 'applicant' | null>(null)
+  const [role, setRole] = useState<'HR' | 'applicant' | null>(null)
 
   const handleContinue = () => {
     if (role) {
@@ -21,9 +21,9 @@ export default function Home() {
       {/* Role buttons */}
       <div className="flex gap-6 mb-6">
         <button
-          onClick={() => setRole('hr')}
+          onClick={() => setRole('HR')}
           className={`px-6 py-3 rounded-xl border ${
-            role === 'hr'
+            role === 'HR'
               ? 'bg-blue-600 text-white'
               : 'bg-white text-blue-600 border-blue-600'
           }`}
