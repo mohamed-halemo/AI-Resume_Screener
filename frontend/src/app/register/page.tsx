@@ -16,6 +16,7 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [passwordStrength, setPasswordStrength] = useState('')
 
   // On component mount, get the 'role' from the URL (e.g., ?role=HR)
   useEffect(() => {
@@ -25,13 +26,26 @@ export default function Register() {
     }
   }, [searchParams])
 
+  // Password strength validation regex
+  const isStrongPassword = (pwd: string) => {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pwd)
+  }
+
   // Handles form submission
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
 
     // Validate password match before sending to backend
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
+      setError('Passwords do not match')
+      return
+    }
+
+    // Validate password strength
+    if (!isStrongPassword(password)) {
+      setError(
+        'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character'
+      )
       return
     }
 
@@ -53,6 +67,27 @@ export default function Register() {
     } else {
       const data = await res.json()
       setError(data.detail || 'Registration failed')
+    }
+  }
+
+  // Handle real-time password strength update
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value
+    setPassword(newPassword)
+
+    // Check password strength
+    if (newPassword.length < 8) {
+      setPasswordStrength('Password is too short')
+    } else if (!/[a-z]/.test(newPassword)) {
+      setPasswordStrength('Password must contain lowercase letters')
+    } else if (!/[A-Z]/.test(newPassword)) {
+      setPasswordStrength('Password must contain uppercase letters')
+    } else if (!/[0-9]/.test(newPassword)) {
+      setPasswordStrength('Password must contain numbers')
+    } else if (!/[\W_]/.test(newPassword)) {
+      setPasswordStrength('Password must contain special characters')
+    } else {
+      setPasswordStrength('Password is strong')
     }
   }
 
@@ -84,10 +119,13 @@ export default function Register() {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             className="w-full px-4 py-2 border rounded-md"
             required
           />
+          {password && (
+            <p className="text-sm text-gray-600">{passwordStrength}</p>
+          )}
           <input
             type="password"
             placeholder="Confirm Password"
@@ -109,7 +147,9 @@ export default function Register() {
 
         <p className="mt-4 text-sm text-center">
           Already have an account?{' '}
-          <a href="/login" className="text-blue-600 underline">Login</a>
+          <a href="/login" className="text-blue-600 underline">
+            Login
+          </a>
         </p>
       </div>
     </div>
