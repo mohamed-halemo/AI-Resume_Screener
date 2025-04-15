@@ -11,16 +11,16 @@ class User(Base):
 
     # Role choices
     ADMIN = "Admin"
-    CANDIDATE = "Candidate"
+    applicant = "applicant"
     HR = "HR"
-    ROLE_CHOICES = [(ADMIN, "Admin"), (CANDIDATE, "Candidate"), (HR, "HR")]
+    ROLE_CHOICES = [(ADMIN, "Admin"), (applicant, "applicant"), (HR, "HR")]
 
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True) 
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
     password = Column(String, unique=False, nullable=False)
-    role = Column(String, nullable=False,default=CANDIDATE)
+    role = Column(String, nullable=False,default=applicant)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
 
     job_descriptions = relationship("JobDescription", back_populates="user", cascade="all, delete-orphan")

@@ -8,7 +8,7 @@ class UserBase(BaseModel):
     name: str
     email: EmailStr
     password: str
-    role: Literal["Admin", "Candidate", "HR"]
+    role: Literal["Admin", "applicant", "HR"]
 
 class UserCreate(UserBase):
     id: UUID=None
