@@ -27,3 +27,12 @@ class UserResponse(UserBase):
         from_attributes = True
 
     
+# We will return token along with the user data in response
+class LoginResponse(BaseModel):
+    access_token: str
+    token_type: str
+    id: UUID
+    # name: str
+    email: EmailStr
+    # role: Literal["Admin", "applicant", "HR"]
+    created_at: datetime
