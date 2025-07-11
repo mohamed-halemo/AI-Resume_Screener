@@ -6,6 +6,7 @@ import uuid
 
 from backend.app.models.resume_job_link import ResumeJobLink
 
+
 class JobDescription(Base):
     __tablename__ = "job_descriptions"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True) 
@@ -18,6 +19,7 @@ class JobDescription(Base):
     experience = Column(Text, nullable=False)
     education = Column(Text, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
+    application_limit = Column(Integer, default=20, nullable=False)
 
     user = relationship("User", back_populates="job_descriptions")
     resume_links = relationship("ResumeJobLink", back_populates="job")
