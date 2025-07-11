@@ -10,6 +10,8 @@ class UserBase(BaseModel):
     password: str
     role: Literal["Admin", "applicant", "HR"]
 
+
+
 class UserCreate(UserBase):
     id: Optional[UUID]=None
   
@@ -26,13 +28,22 @@ class UserResponse(UserBase):
     class Config:
         from_attributes = True
 
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
+
+
     
 # We will return token along with the user data in response
 class LoginResponse(BaseModel):
     access_token: str
     token_type: str
-    id: UUID
-    # name: str
-    email: EmailStr
-    # role: Literal["Admin", "applicant", "HR"]
     created_at: datetime
+
+
+class UserDetails(BaseModel):
+    id: UUID
+    name: str
+    email: EmailStr
+    role: Literal["Admin", "applicant", "HR"]

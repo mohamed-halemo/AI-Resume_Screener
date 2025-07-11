@@ -4,7 +4,6 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 from backend.app.utils.resume_section_processor import ResumeSectionProcessor
-
 load_dotenv()
 
 
@@ -166,7 +165,16 @@ class ResumeParser:
     
 
 
+# if __name__ == "__main__":
+#     import sys
+#     import os
 
+#     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+#     resume_path="G:\\py_scripts\\ai-resume-screener\\ai-resume-screener\\backend\\app\\services\\test.pdf"
+#     parser = ResumeParser(resume_path)
+#     sections = parser.extract_resume_sections()
+#     for section, content in sections.items():
+#         print(f"--- {section.upper()} ---\n{content}\n")
     
 
    
