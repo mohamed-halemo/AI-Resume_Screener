@@ -23,7 +23,7 @@ class JobDescriptionUpdate(BaseModel):
     experience: Optional[str] = None
     education: Optional[str] = None
     application_limit: Optional[int] = None
-
+    status: Optional[str]=None
     
 class JobDescriptionResponse(JobDescriptionBase):
     id: UUID

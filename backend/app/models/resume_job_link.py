@@ -17,6 +17,6 @@ class ResumeJobLink(Base):
     score = Column(Float, nullable=True)
     ranking = Column(Integer, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
-
+#access full resume object from resumejoblink instance and job too
     resume = relationship("Resume", back_populates="resume_job_links")
     job = relationship("JobDescription", back_populates="resume_links")
