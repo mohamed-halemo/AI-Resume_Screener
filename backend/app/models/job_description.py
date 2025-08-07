@@ -20,6 +20,7 @@ class JobDescription(Base):
     education = Column(Text, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
     application_limit = Column(Integer, default=20, nullable=False)
+    status = Column(String, default="open", nullable=False)  # could be "open", "closed"
 
     user = relationship("User", back_populates="job_descriptions")
     resume_links = relationship("ResumeJobLink", back_populates="job")

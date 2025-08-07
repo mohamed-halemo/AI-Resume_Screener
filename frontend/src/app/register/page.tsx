@@ -50,7 +50,7 @@ export default function Register() {
     }
 
     // Send data to FastAPI backend
-    const res = await fetch('http://localhost:8000/register', {
+    const res = await fetch('http://localhost:8000/api/v1/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -63,7 +63,7 @@ export default function Register() {
 
     if (res.ok) {
       // Redirect based on role
-      router.push(role === 'HR' ? '/upload-job-description' : '/upload-resume')
+      router.push(role === 'HR' ? '/upload-job-description' : '/login')
     } else {
       const data = await res.json()
       setError(data.detail || 'Registration failed')
