@@ -72,4 +72,4 @@ frontend/             Next.js (login, register)
 - Applicant dashboard: upload resume, see feedback
 - LLM re-ranking of the top 5 and LLM-written feedback
 
-Built with [HTG33](https://github.com/HTG33).
+Built with [Hesham Atef](https://github.com/HTG33).
