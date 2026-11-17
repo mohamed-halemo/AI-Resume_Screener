@@ -5,7 +5,7 @@ from backend.app.models.ai_feedback import AIFeedback
 from backend.app.models.job_description import JobDescription
 from fastapi import HTTPException
 from uuid import UUID
-from services.resume_ranker_service import ResumeRanker   # import your ranking class
+from backend.app.services.resume_ranker_service import ResumeRanker
 
 #TODO: handle job description status and links when the job is closed/ applicants received there feedbacks.
 #TODO: handle view/view-matched processes for job-resumes links from HR/Admin prespectives
@@ -113,36 +113,36 @@ class ResumeJobLinkService:
         return {"updated": len(ranked)}
 
 
-def generate_and_save_ai_feedback(self, resume_id: UUID, job_id: UUID) -> AIFeedback:
-    link = (
-        self.db.query(ResumeJobLink)
-        .filter(
-            ResumeJobLink.resume_id == resume_id,
-            ResumeJobLink.job_id == job_id
+    def generate_and_save_ai_feedback(self, resume_id: UUID, job_id: UUID) -> AIFeedback:
+        link = (
+            self.db.query(ResumeJobLink)
+            .filter(
+                ResumeJobLink.resume_id == resume_id,
+                ResumeJobLink.job_id == job_id
+            )
+            .first()
         )
-        .first()
-    )
-    if not link:
-        raise HTTPException(status_code=404, detail="Match info not found")
+        if not link:
+            raise HTTPException(status_code=404, detail="Match info not found")
 
-    # Generate basic feedback based on matching results
-    if link.is_matched:
-        feedback_text = (
-            f"Your resume matched the job with a score of {link.score:.2f}. "
-            f"You're ranked #{link.ranking}. Strong alignment detected!"
-        )
-    else:
-        feedback_text = (
-            f" Your resume did not match this job. Score: {link.score:.2f}. "
-            "Consider adding skills or experience related to the job description."
-        )
+        # Generate basic feedback based on matching results
+        if link.is_matched:
+            feedback_text = (
+                f"Your resume matched the job with a score of {link.score:.2f}. "
+                f"You're ranked #{link.ranking}. Strong alignment detected!"
+            )
+        else:
+            feedback_text = (
+                f" Your resume did not match this job. Score: {link.score:.2f}. "
+                "Consider adding skills or experience related to the job description."
+            )
 
-    # Save to AIFeedback table
-    ai_feedback = AIFeedback(
-        resume_id=resume_id,
-        feedback_text=feedback_text
-    )
-    self.db.add(ai_feedback)
-    self.db.commit()
-    self.db.refresh(ai_feedback)
-    return ai_feedback
+        # Save to AIFeedback table
+        ai_feedback = AIFeedback(
+            resume_id=resume_id,
+            feedback_text=feedback_text
+        )
+        self.db.add(ai_feedback)
+        self.db.commit()
+        self.db.refresh(ai_feedback)
+        return ai_feedback
